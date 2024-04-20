@@ -29,8 +29,25 @@ export default class HttpApi implements Api {
   private async addApiRoutes(domainServices: DomainServices): Promise<void> {
     await this.server?.register(EventsRouter, {
       prefix: '/events',
-      eventsService: domainServices.EventsService,
-    })
+      eventsService: domainServices.eventsService,
+    });
+
+    await this.server?.register(OauthRouter, {
+      prefix: '/oauth',
+      userService: domainServices.userService,
+      authService: domainServices.authService,
+      cookieDomain: this.config.cookieDomain,
+    });
+
+    await this.server?.register(AuthRouter, {
+      prefix: '/auth',
+      authService: domainServices.authService,
+    });
+
+    await this.server?.register(UserRouter, {
+      prefix: '/user',
+      userService: domainServices.userService,
+    });
   }
 
   /**
