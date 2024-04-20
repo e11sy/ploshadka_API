@@ -4,6 +4,7 @@ import type { FastifyInstance } from 'fastify';
 import fastify from 'fastify';
 import { notFound, forbidden, unauthorized, notAcceptable, domainError } from './decorators/index.js';
 import type { DomainServices } from '@domain/index.js';
+import AuthRouter from '@presentation/http/router/auth.js';
 
 export default class HttpApi implements Api {
   /**
