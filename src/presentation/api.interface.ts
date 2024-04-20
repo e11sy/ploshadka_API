@@ -12,19 +12,6 @@ export default interface Api {
    * @param domainServices - instances of domain services
    */
   init(domainServices: DomainServices): Promise<void>;
-
-  /**
-   * Runs API module
-   */
-  run(): Promise<void>;
-
-  /**
-   * Makes fake request to API.
-   * Used for API testing
-   *
-   * @param params - request params
-   */
-  fakeRequest(params: RequestParams): Promise<Response | undefined>;
 }
 
 
