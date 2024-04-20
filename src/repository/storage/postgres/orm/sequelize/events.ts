@@ -44,7 +44,7 @@ export default class EventSequelizeStorage {
         type: DataTypes.STRING,
       },
       time: {
-        type: DataTypes.ARRAY,
+        type: DataTypes.ARRAY(DataTypes.STRING),
       },
     }, {
       tableName: this.tableName,

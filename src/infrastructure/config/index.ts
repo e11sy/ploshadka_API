@@ -1,4 +1,4 @@
-import { loadConfig } from '../utils/index.js';
+import { loadConfig } from '@codex-team/config-loader';
 import * as process from 'process';
 import arg from 'arg';
 import path from 'path';

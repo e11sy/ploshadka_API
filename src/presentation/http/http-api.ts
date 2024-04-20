@@ -5,6 +5,9 @@ import fastify from 'fastify';
 import { notFound, forbidden, unauthorized, notAcceptable, domainError } from './decorators/index.js';
 import type { DomainServices } from '@domain/index.js';
 import AuthRouter from '@presentation/http/router/auth.js';
+import UserRouter from './router/user..js';
+import OauthRouter from './router/oauth.js';
+import EventsRouter from './router/events.js';
 
 export default class HttpApi implements Api {
   /**
@@ -30,7 +33,7 @@ export default class HttpApi implements Api {
   private async addApiRoutes(domainServices: DomainServices): Promise<void> {
     await this.server?.register(EventsRouter, {
       prefix: '/events',
-      eventsService: domainServices.eventsService,
+      eventService: domainServices.eventsService,
     });
 
     await this.server?.register(OauthRouter, {
@@ -48,6 +51,20 @@ export default class HttpApi implements Api {
     await this.server?.register(UserRouter, {
       prefix: '/user',
       userService: domainServices.userService,
+    });
+  }
+
+  /**
+   * Runs http server
+   */
+  public async run(): Promise<void> {
+    if (this.server === undefined) {
+      throw new Error('Server is not initialized');
+    }
+
+    await this.server.listen({
+      host: this.config.host,
+      port: this.config.port,
     });
   }
 

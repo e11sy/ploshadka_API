@@ -1,0 +1,40 @@
+httpApi:
+  host: 0.0.0.0
+  fileSizeLimit: 1000000
+  port: 1337
+  allowedOrigins: '*'
+  cookieSecret: 'secret'
+  cookieDomain: 'localhost'
+  oauth2:
+    google:
+      clientId: 'client_id'
+      clientSecret: 'client_secret'
+      redirectUrl: '/oauth/google/login'
+      callbackUrl: 'http://localhost:1337/oauth/google/callback'
+
+auth:
+  accessSecret: 'secret'
+  accessExpiresIn: 900000
+  refreshExpiresIn: 2592000000
+
+metrics:
+  enabled: true
+  host: 0.0.0.0
+  port: 9090
+
+logging:
+  global: info
+  metricsServer: info
+  appServer: info
+  database: info
+
+s3:
+  accessKeyId: 'secret'
+  secretAccessKey: 'secret'
+  endpoint: 'http://localhost:9000'
+
+database:
+  dsn: 'postgres://codex:postgres@postgres:5432/notes'
+
+openai:
+  token: 'token'

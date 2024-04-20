@@ -1,2 +1,8 @@
+app-config.local.yaml
+
 # Dependency directories
 node_modules/
+
+# Nuxt.js build / generate output
+.nuxt
+dist

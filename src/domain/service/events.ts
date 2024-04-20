@@ -1,5 +1,9 @@
-// import EventRepository from '@repository/'
+import EventRepository from '@repository/events.repository.js'
 
-// export default class EventService {
-//   public eventRepository:
-// }
+export default class EventService {
+  public eventRepository: EventRepository;
+
+  constructor(eventRepository: EventRepository) {
+    this.eventRepository = eventRepository;
+  }
+}
