@@ -68,4 +68,14 @@ export default class EventSequelizeStorage {
       }
     })
   }
+
+  public async getEventsByCourtId(courtId: Event['courtId']): Promise<Event[]> {
+    const events = await this.model.findAll({
+      where: {
+        courtId,
+      }
+    });
+
+    return events ?? [];
+  }
 }

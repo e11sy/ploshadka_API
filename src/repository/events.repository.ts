@@ -15,4 +15,8 @@ export default class EventsRepository {
   public async getEventByName(name: Event['name']): Promise<Event | null>{
     return await this.storage.getEventByName(name);
   }
+
+  public async getEventsByCourtId(courtId: Event['courtId']): Promise<Event[]> {
+    return await this.storage.getEventsByCourtId(courtId);
+  }
 }

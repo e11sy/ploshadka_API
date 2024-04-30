@@ -36,6 +36,17 @@ const EventsRouter: FastifyPluginCallback<EventsRouterOptions> = (fastify, opts,
     return reply.send(event);
   })
 
+  fastify.get<{
+    Params: { courtId: Event['courtId']},
+    Reply: Event[];
+  }>('/court/:courtId', async ( request, reply ) => {
+    const courtId = request.params.courtId;
+
+    const events = await eventService.getEventsByCourtId(courtId);
+
+    return reply.send(events);
+  });
+
   done();
 }
 
