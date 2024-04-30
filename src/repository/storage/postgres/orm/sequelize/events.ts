@@ -51,4 +51,31 @@ export default class EventSequelizeStorage {
       sequelize: this.database,
     });
   };
+
+  public async createEvent(courtId: Event['courtId'], name: Event['name'], time: Event['time'], description?: Event['description']): Promise<Event>{
+    return await this.model.create({
+      courtId,
+      name,
+      time,
+      description,
+    });
+  }
+
+  public async getEventByName(name: Event['name']): Promise<Event | null>{
+    return await this.model.findOne({
+      where: {
+        name,
+      }
+    })
+  }
+
+  public async getEventsByCourtId(courtId: Event['courtId']): Promise<Event[]> {
+    const events = await this.model.findAll({
+      where: {
+        courtId,
+      }
+    });
+
+    return events ?? [];
+  }
 }
