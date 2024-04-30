@@ -48,7 +48,7 @@ export async function init(orm: Orm): Promise<Repositories> {
 
   await eventStorage.model.sync();
   await userStorage.model.sync();
-  // await userSessionsStorage.model.sync();
+  await userSessionsStorage.model.sync();
 
 
   /**
