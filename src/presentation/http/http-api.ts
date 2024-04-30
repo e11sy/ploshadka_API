@@ -1,13 +1,16 @@
+import { getLogger } from '@infrastructure/logging/index.js';
 import type Api from '@presentation/api.interface.js';
 import type { HttpApiConfig } from '@infrastructure/config/index.js';
-import type { FastifyInstance } from 'fastify';
+import type { FastifyInstance, FastifyBaseLogger } from 'fastify';
 import fastify from 'fastify';
 import { notFound, forbidden, unauthorized, notAcceptable, domainError } from './decorators/index.js';
 import type { DomainServices } from '@domain/index.js';
 import AuthRouter from '@presentation/http/router/auth.js';
-import UserRouter from './router/user..js';
+import UserRouter from './router/user.js';
 import OauthRouter from './router/oauth.js';
 import EventsRouter from './router/events.js';
+
+const appServerLogger = getLogger('appServer');
 
 export default class HttpApi implements Api {
   /**
@@ -18,7 +21,7 @@ export default class HttpApi implements Api {
   constructor(private readonly config: HttpApiConfig) { }
 
   public async init(domainServices: DomainServices): Promise<void> {
-    this.server = fastify({});
+    this.server = fastify({logger: appServerLogger as FastifyBaseLogger});
 
     this.addDecorators();
 

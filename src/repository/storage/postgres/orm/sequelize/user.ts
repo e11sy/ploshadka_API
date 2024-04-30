@@ -1,5 +1,4 @@
 import type { Sequelize, InferAttributes, InferCreationAttributes, CreationOptional } from 'sequelize';
-import { literal } from 'sequelize';
 import { Model, DataTypes } from 'sequelize';
 import type Orm from '@repository/storage/postgres/orm/sequelize/index.js';
 import type User from '@domain/entities/user.js';

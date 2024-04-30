@@ -1,5 +1,6 @@
 import config from '@infrastructure/config/index.js';
 import API from '@presentation/index.js';
+import logger from '@infrastructure/logging/index.js';
 import { init as initDomainServices } from '@domain/index.js';
 import { initORM, init as initRepositories } from '@repository/index.js';
 
@@ -16,8 +17,9 @@ const start = async (): Promise<void> => {
     await api.init(domainServices);
     await api.run();
 
+    logger.info('Application launched successfully');
   } catch (err) {
-    console.log(err);
+    logger.fatal('Failed to start application ' + err);
     process.exit(1);
   }
 };
@@ -25,7 +27,7 @@ const start = async (): Promise<void> => {
 try {
   await start();
 } catch (err) {
-  console.log(err);
+  logger.fatal('Failed to start application ' + err);
   process.exit(1);
 }
 

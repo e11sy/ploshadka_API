@@ -28,13 +28,5 @@ logging:
   appServer: info
   database: info
 
-s3:
-  accessKeyId: 'secret'
-  secretAccessKey: 'secret'
-  endpoint: 'http://localhost:9000'
-
 database:
-  dsn: 'postgres://codex:postgres@postgres:5432/notes'
-
-openai:
-  token: 'token'
+  dsn: 'postgres://postgres:Egoramurin1@localhost:5432/ploshadka'

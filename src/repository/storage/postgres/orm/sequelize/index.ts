@@ -1,5 +1,8 @@
 import type { DatabaseConfig } from '@infrastructure/config/index.js';
 import { Sequelize } from 'sequelize';
+import { getLogger } from '@infrastructure/logging/index.js';
+
+const databaseLogger = getLogger('database');
 
 /**
  * Class for creating database connection
@@ -24,6 +27,7 @@ export default class SequelizeOrm {
     this.config = databaseConfig;
 
     this.conn = new Sequelize(this.config.dsn, {
+      logging: databaseLogger.info.bind(databaseLogger),
       define: {
         /**
          * Use snake_case for fields in db, but camelCase in code
@@ -42,7 +46,9 @@ export default class SequelizeOrm {
      */
     try {
       await this.conn.authenticate();
+      databaseLogger.info(`Database connected to ${this.conn.config.host}:${this.conn.config.port}`);
     } catch (error) {
+      databaseLogger.error(error);
     }
   }
 

@@ -1,4 +1,6 @@
 app-config.local.yaml
+database
+dist
 
 # Dependency directories
 node_modules/
@@ -6,3 +8,9 @@ node_modules/
 # Nuxt.js build / generate output
 .nuxt
 dist
+
+# package manager
+.yarn/*
+!.yarn/releases
+!.yarn/plugins
+.pnp.*

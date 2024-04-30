@@ -43,12 +43,12 @@ export async function init(orm: Orm): Promise<Repositories> {
    * Create storage instances
    */
   const eventStorage = new  EventStorage(orm);
-  const userSessionsStorage = new UserSessionStorage(orm);
   const userStorage = new UserStorage(orm)
+  const userSessionsStorage = new UserSessionStorage(orm);
 
-  await userSessionsStorage.model.sync();
   await eventStorage.model.sync();
   await userStorage.model.sync();
+  // await userSessionsStorage.model.sync();
 
 
   /**

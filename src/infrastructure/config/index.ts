@@ -5,15 +5,6 @@ import path from 'path';
 import { z } from 'zod';
 
 /**
- * Metrics configuration
- */
-const MetricsConfig = z.object({
-  enabled: z.boolean(), // todo use this config to setup metrics server later
-  host: z.string(),
-  port: z.number(),
-});
-
-/**
  * Authentication configuration
  */
 const AuthConfig = z.object({
@@ -48,27 +39,6 @@ const DatabaseConfig = z.object({
 });
 
 /**
- * OpenAI access config
- */
-const OpenAIConfig = z.object({
-  token: z.string(),
-});
-
-/**
- * S3 storage configuration
- */
-const S3StorageConfig = z.object({
-  accessKeyId: z.string(),
-  secretAccessKey: z.string(),
-  region: z.optional(z.string()),
-  endpoint: z.optional(z.string()),
-});
-
-export type S3StorageConfig = z.infer<typeof S3StorageConfig>;
-
-export type DatabaseConfig = z.infer<typeof DatabaseConfig>;
-
-/**
  * Available logging levels configuration
  */
 const LoggingLevel = z.union([
@@ -94,6 +64,8 @@ export const LoggingConfig = z.object({
 
 export type LoggingConfig = z.infer<typeof LoggingConfig>;
 
+export type DatabaseConfig = z.infer<typeof DatabaseConfig>;
+
 /**
  * Http API configuration
  */
@@ -115,12 +87,9 @@ export type HttpApiConfig = z.infer<typeof HttpApiConfig>;
  */
 const AppConfig = z.object({
   httpApi: HttpApiConfig,
-  metrics: MetricsConfig,
-  logging: LoggingConfig,
   database: DatabaseConfig,
+  logging: LoggingConfig,
   auth: AuthConfig,
-  openai: OpenAIConfig,
-  s3: S3StorageConfig,
 });
 
 export type AppConfig = z.infer<typeof AppConfig>;
@@ -149,11 +118,6 @@ const defaultConfig: AppConfig = {
     accessExpiresIn: 900000,
     refreshExpiresIn: 2592000000,
   },
-  metrics: {
-    enabled: true,
-    host: '0.0.0.0',
-    port: 9090,
-  },
   logging: {
     global: 'info',
     metricsServer: 'info',
@@ -161,14 +125,7 @@ const defaultConfig: AppConfig = {
     database: 'info',
   },
   database: {
-    dsn: 'postgres://user:pass@postgres/codex-notes',
-  },
-  s3: {
-    accessKeyId: '',
-    secretAccessKey: '',
-  },
-  openai: {
-    token: '',
+    dsn: 'postgres://user:pass@postgres/ploshadka',
   },
 };
 

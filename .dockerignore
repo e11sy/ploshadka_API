@@ -1,0 +1,21 @@
+# Ignore everything
+*
+
+# Allow files and directories
+!src
+!.eslintrc
+!.nvmrc
+!app-config.yaml
+!package.json
+!package-lock.json
+!tsconfig.json
+!migrations
+!init.sh
+!yarn.lock
+!.yarnrc.yml
+!.yarn/releases
+
+# Ignore unnecessary files inside allowed directories
+**/*~
+**/*.log
+**/.DS_Store
